@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,11 +25,28 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/upload")
-    public ResponseEntity<List<ResFileUploadDto>> upload (
+    public ResponseEntity<List<ResFileUploadDto>> upload(
             @PathVariable Long boardId,
             @RequestParam("file") List<MultipartFile> files) throws IOException {
         List<ResFileUploadDto> saveFile = fileService.upload(boardId, files);
+
+        for (MultipartFile file : files) {
+            String fileExtension = StringUtils.getFilenameExtension(file.getOriginalFilename());
+
+            if (isAllowedExtension(fileExtension)) {
+
+            } else {
+
+            }
+        }
+
         return ResponseEntity.status(HttpStatus.CREATED).body(saveFile);
+    }
+
+    private boolean isAllowedExtension(String extension) {
+
+        return true;
+
     }
 
     @GetMapping("/download")
