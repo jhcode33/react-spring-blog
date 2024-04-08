@@ -111,6 +111,7 @@ public class MemberService {
      * @param passwordCheck
      */
     private void checkPassword(String password, String passwordCheck) {
+        log.info(password + passwordCheck);
         if (!password.equals(passwordCheck)) {
             throw new MemberException("패스워드 불일치", HttpStatus.BAD_REQUEST);
         }

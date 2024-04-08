@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/react-spring-blog
+    url: jdbc:mysql://localhost:3306/react_spring_blog
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver

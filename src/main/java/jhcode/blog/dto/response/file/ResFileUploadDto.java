@@ -20,7 +20,11 @@ public class ResFileUploadDto {
     private String originFileName;
     private String filePath;
     private String fileType;
+    private String fileName;
 
+    public String getFileName() {
+        return this.originFileName = originFileName;
+    }
     @Builder
     public ResFileUploadDto(Long fileId, String originFileName, String filePath, String fileType) {
         this.fileId = fileId;
