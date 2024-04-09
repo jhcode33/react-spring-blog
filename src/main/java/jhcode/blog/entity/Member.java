@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Member extends BaseTimeEntity implements UserDetails {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMBER_ID")
     private Long id;
 
@@ -31,7 +31,17 @@ public class Member extends BaseTimeEntity implements UserDetails {
     private String password;
 
     @Column(nullable = false)
-    private String username;
+    private String username; // 사람 이름이다.
+
+    @Column(nullable = false)
+    private String phone;
+
+    @Column(nullable = false, name="region_id")
+    private String regionId;
+
+    @Column(nullable = false,columnDefinition = "TINYINT")
+    private int status=0;// 탈퇴 여부; 0=현재 회원, 1=탈퇴 회원.
+
 
     @Enumerated(EnumType.STRING)
     private Role roles;
@@ -44,11 +54,13 @@ public class Member extends BaseTimeEntity implements UserDetails {
 
     //== 생성자 Builder ==//
     @Builder
-    public Member(String email, String password, String username, Role roles) {
+    public Member(String email, String password, String username, Role roles, String phone, String regionId) {
         this.email = email;
         this.password = password;
         this.username = username;
         this.roles = roles;
+        this.phone = phone;
+        this.regionId = regionId;
     }
 
     //== update ==//
