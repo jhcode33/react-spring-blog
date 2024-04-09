@@ -50,6 +50,9 @@ public class Member extends BaseTimeEntity implements UserDetails {
     public List<Board> boards = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<Memo> memos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Comment> comments = new ArrayList<>();
 
     //== 생성자 Builder ==//
